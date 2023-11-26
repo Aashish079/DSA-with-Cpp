@@ -35,7 +35,9 @@ private:
     int *arr;
 
 public:
+    Array(const Array &);
     Array(int);
+    void operator=(Array &);
     bool isEmpty();
     bool isFull();
     void append(int);
@@ -47,12 +49,24 @@ public:
     int findElement(int);
     ~Array();
 };
+Array::Array(const Array &a)
+{
+    capacity = a.capacity;
+    lastIndex = a.lastIndex;
+    *arr = *(a.arr);
+}
 
 Array::Array(int capacity)
 {
     this->capacity = capacity;
     this->lastIndex = -1;
     this->arr = new int[capacity];
+}
+void Array::operator=(Array &a)
+{
+    capacity = a.capacity;
+    lastIndex = a.lastIndex;
+    *arr = *(a.arr);
 }
 bool Array::isEmpty()
 {
@@ -114,28 +128,44 @@ void Array::edit(int element, int index)
 }
 void Array::del(int index)
 {
-    for (int i = index; i < lastIndex; i++)
+    if (index < 0 || index > lastIndex)
     {
-        arr[i] = arr[i + 1];
+        cout << "/n Invalid Index or empty array.";
+    }
+    else
+    {
+        for (int i = index; i < lastIndex; i++)
+        {
+            arr[i] = arr[i + 1];
+        }
     }
     lastIndex--;
 }
-int Array::getElement(int index)
+int Array::getElement(int index) 
 {
-
+    if (index < 0 || index > lastIndex)
+    {
+        cout << "/n Invalid Index or empty array";
+        throw new exception();
+    }
     return arr[index];
 }
-int Array::countElements(){
-    return lastIndex+1;
+int Array::countElements()
+{
+    return lastIndex + 1;
 }
-int Array::findElement(int element){
-    for(int i=0; i<=lastIndex; i++){
-        if(arr[i]==element){
-            return i; 
+int Array::findElement(int element)
+{
+    for (int i = 0; i <= lastIndex; i++)
+    {
+        if (arr[i] == element)
+        {
+            return i;
         }
     }
     return -1;
 }
-Array:: ~Array(){
-    delete arr;
+Array::~Array()
+{
+    delete[] arr;
 }
