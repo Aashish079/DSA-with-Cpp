@@ -37,7 +37,7 @@ private:
 public:
     Array(const Array &);
     Array(int);
-    void operator=(Array &);
+    Array &operator=(Array &);
     bool isEmpty();
     bool isFull();
     void append(int);
@@ -53,7 +53,8 @@ Array::Array(const Array &a)
 {
     capacity = a.capacity;
     lastIndex = a.lastIndex;
-    *arr = *(a.arr);
+    for (int i = 0; i <= lastIndex; i++)
+        arr[i] = a.arr[i];
 }
 
 Array::Array(int capacity)
@@ -62,11 +63,20 @@ Array::Array(int capacity)
     this->lastIndex = -1;
     this->arr = new int[capacity];
 }
-void Array::operator=(Array &a)
+Array &Array::operator=(Array &a)
 {
-    capacity = a.capacity;
-    lastIndex = a.lastIndex;
-    *arr = *(a.arr);
+    if (this != &a)
+    {
+        if(arr!= NULL)
+        delete []arr;
+        capacity = a.capacity;
+        lastIndex = a.lastIndex;
+        arr = new int[capacity];
+        for (int i = 0; i <= lastIndex; i++)
+            arr[i] = a.arr[i];
+    }
+
+    return *this;
 }
 bool Array::isEmpty()
 {
@@ -141,7 +151,7 @@ void Array::del(int index)
     }
     lastIndex--;
 }
-int Array::getElement(int index) 
+int Array::getElement(int index)
 {
     if (index < 0 || index > lastIndex)
     {
