@@ -37,6 +37,7 @@ public:
     void deleteFirst();
     void deleteLast();
     void deleteNode(int);
+    void displayList();
     ~SLL();
 };
 
@@ -168,11 +169,44 @@ void SLL::deleteNode(int data)
         }
     }
 }
+void SLL::displayList()
+{
+    node *temp = start;
+    while (temp != NULL)
+    {
+        cout << temp->item << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
 SLL::~SLL()
 {
-    while (start!=NULL)
+    while (start != NULL)
     {
         deleteFirst();
     }
 }
-//Create Copy Constructor and Copy assignment operator.
+// Create Copy Constructor and Copy assignment operator.
+
+// Programmer's Persepctive
+int main()
+{
+    SLL s;
+
+    for (int i = 10; i >= 1; i--)
+        s.insertAtStart(i * 10);
+
+    cout << "List: ";
+    s.displayList();
+    s.deleteNode(50);
+    s.displayList();
+
+    node *p = s.search(40);
+    cout<< p->item<<endl;
+    cout<< p->next<<endl;
+
+    s.insertAfter(s.search(40), 50);
+    s.displayList();
+
+    return 0;
+}
