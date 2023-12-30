@@ -37,7 +37,13 @@ private:
 public:
     CLL();
     ~CLL();
-    void insertFirst();
+    void insertFirst(int);
+    void insertLast(int);
+    node *search(int);
+    void insertAfter(node *, int);
+    void deleteFirst();
+    void deleteLast();
+    void deleteNode(node *);
 };
 CLL::CLL()
 {
@@ -46,6 +52,106 @@ CLL::CLL()
 CLL::~CLL()
 {
 }
-void CLL::insertFirst(){
+void CLL::insertFirst(int data)
+{
+    node *n = new node;
+    n->item = data;
+    if (last != NULL)
+    {
+        n->next = last->next;
+        last->next = n;
+    }
+    else
+    {
+        last = n;
+        last->next = last;
+    }
+}
+void CLL::insertLast(int data)
+{
+    node *n = new node;
+    n->item = data;
+    if (last != NULL)
+    {
+        n->next = last->next;
+        last->next = n;
+        last = n;
+    }
+    else
+    {
+        last = n;
+        last->next = last;
+    }
+}
+node *CLL::search(int data)
+{
+    node *t;
+    if (last != NULL)
+    {
+        t = last->next;
+
+        do
+        {
+            if (t->item == data)
+                return t;
+            t = t->next;
+        } while (t != last->next);
+    }
+    return NULL;
+}
+void CLL::insertAfter(node *t, int data)
+{
+    node *n = new node;
+    n->item = data;
+    if (t != NULL)
+    {
+        n->next = t->next;
+        t->next = n;
+        if (t == last)
+            last = n;
+    }
+}
+void CLL::deleteFirst()
+{
+    node *t;
+    if (last != NULL)
+    {
+        if (last->next == last)
+        {
+            delete last;
+            last = NULL;
+        }
+        else
+        {
+            t = last->next;
+            last->next = t->next;
+            delete t;
+        }
+    }
+}
+void CLL::deleteLast()
+{
+    node *t;
+    if (last != NULL)
+    {
+        if(last->next == last){
+            delete last;
+            last = NULL;
+        }
+        else
+        {
+            t = last->next; // Setting the pointer to the first node
+            while (t->next != last)
+            {
+                t = t->next;
+            }
+            t->next = last->next;
+            delete last;
+            last = t;
+        }
+    }
+}
+void CLL::deleteNode(node *t)
+{
     
 }
