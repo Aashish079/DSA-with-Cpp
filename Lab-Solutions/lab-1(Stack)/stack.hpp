@@ -1,6 +1,3 @@
-// Write an algorithm and program code for the following:
-// 1. Perform push and pop operations in stack
-
 #include <iostream>
 using namespace std;
 
@@ -13,7 +10,7 @@ private:
     int capacity;
 
 public:
-    Stack(int size)
+    Stack(int size = 10)
     {
         capacity = size;
         arr = new T[size];
@@ -21,6 +18,7 @@ public:
     }
     void push(int);
     T pop();
+    T peek();
     bool isFull();
     bool isEmpty();
 };
@@ -62,38 +60,9 @@ bool Stack<T>::isEmpty()
 {
     return top == -1;
 }
-
-int main()
+template <class T>
+T Stack<T>::peek()
 {
-    Stack<int> s1(5);
-
-    while (1)
-    {
-        cout<<"**** MENU ****"<<endl;
-        cout << "1-> Push" << endl;
-        cout << "2-> Pop " << endl;
-        cout << "3->Exit" << endl;
-        int choice;
-        fflush(stdin);
-        cin >> choice;
-
-        switch (choice)
-        {
-        case 1:
-            int data;
-            cout << "Enter the value to be Pushed: " << endl;
-            cin >> data;
-            s1.push(data);
-            break;
-
-        case 2:
-            cout << s1.pop()<<endl;
-            break;
-        case 3:
-            exit(1);
-            break;
-        }
-    }
-
-    return 1;
+    if (top == -1){return '\0';}
+    return arr[top];
 }
