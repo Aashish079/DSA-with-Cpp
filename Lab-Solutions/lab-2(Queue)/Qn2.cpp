@@ -51,8 +51,8 @@ void CircularQueue<T>::enqueue(T data)
         {
             front = rear = 0;
         }
-        rear = (rear + 1) % capacity; //Modulo increment remember group theory
         arr[rear] = data;
+        rear = (rear + 1) % capacity; //Modulo increment remember group theory
     }
 }
 
@@ -64,6 +64,7 @@ T CircularQueue<T>::dequeue()
         return -1;
     }
     else{
+        T item = arr[front];
         if(front == rear){
             front = rear = -1;
         }
@@ -71,7 +72,7 @@ T CircularQueue<T>::dequeue()
             front = (front + 1) % capacity;
         }
         cout<<"Item deleted."<<endl;
-        return arr[front];
+        return item;
     }
 }
 

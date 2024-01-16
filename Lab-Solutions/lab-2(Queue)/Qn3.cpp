@@ -34,12 +34,12 @@ Deque<T>::Deque(int size)
 template <class T>
 bool Deque<T>::isFull()
 {
-    return front == 0;
+    return ((rear + 1) % capacity == front);
 }
 template <class T>
 bool Deque<T>::isEmpty()
 {
-    return front == rear;
+     return (front == -1);
 }
 
 template <class T>
@@ -74,6 +74,7 @@ void Deque<T>::enqueueFront(T data)
         }
         front = (front - 1 + capacity) % capacity; // Modulo decrement remember group theory, +capacity is added to avoid negative values
         arr[front] = data;
+        cout<<"Enqued data: "<<data<<endl;
     }
 }
 template <class T>

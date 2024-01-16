@@ -1,0 +1,1 @@
+ rear = (rear - 1 + capacity) % capacity;

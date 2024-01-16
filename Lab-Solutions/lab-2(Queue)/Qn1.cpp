@@ -45,6 +45,7 @@ T Queue<T>::dequeue(){
     }
     else
     {
+        cout<<"Dequeued a value:";
         return arr[++front];
     }
 }
