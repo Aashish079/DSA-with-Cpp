@@ -1,14 +1,3 @@
-// 1. INSERTION OPERATIONS
-// a. INSERT NODE AT BEGINNING OF THE LIST
-// b. INSERT NODE AT END OF THE LIST
-// c. INSERT NODE AFTER SPECIFIC NODE
-// d. INSERT NODE BEFORE SPECIFIC NODE
-
-// 2. DELETION OPERATIONS
-// a. DELETE NODE FROM BEGINNING OF THE LIST
-// b. DELETE NODE FROM END OF THE LIST
-// c. DELETE NODE AFTER SPECIFIC NODE
-
 #include <iostream>
 using namespace std;
 struct node
@@ -180,17 +169,4 @@ void SLL::displayList()
         cout << t->data << " " << endl;
         t = t->next;
     }
-}
-int main()
-{
-    SLL sl;
-
-    sl.insertBeg(5);
-    sl.insertBeg(6);
-    sl.insertBeg(3);
-    sl.insertBeg(2);
-    sl.insertAfter(sl.search(6), 7);
-    sl.deleteNode(7);
-    sl.deleteEnd();
-    sl.displayList();
 }

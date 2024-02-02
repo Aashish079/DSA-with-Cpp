@@ -6,7 +6,7 @@ template <class T>
 class Queue
 {
 private:
-    int front, rear, size;
+    int front, rear;
     int capacity;
     T *arr;
 
